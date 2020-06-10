@@ -2,24 +2,146 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+}
+
+/* .container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  background: red;
+} */
+
+.app {
+  background: #f3a964;
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
 }
 
 .currency-box {
-  border: solid 1px gold;
-  width: 300px;
-  margin: 100px auto;
+  background: rgb(224, 24, 24);
+  margin: 20px;
+  border-radius: 15px;
+  width: 360px;
+}
+.inputs {
+  margin: 10px;
+  padding: 10px;
+  justify-items: center;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.inputs input {
+  width: 95%;
+  border-radius: 6px;
+  height: 50px;
+  font-size: 35px;
+  justify-self: center;
+  border: none;
+  outline: none;
+  margin: auto;
+  padding-left: 10px;
+  color: rgb(224, 24, 24);
+  appearance: none;
+}
+
+#fromValue {
+  width: 99%;
+  border-radius: 6px;
+  height: 50px;
+  font-size: 35px;
+  justify-self: center;
+  border: none;
+  outline: none;
+  margin: 10px auto;
+  padding-left: 10px;
+  color: rgb(224, 24, 24);
+}
+
+#toValue {
+  width: 99%;
+  border-radius: 6px;
+  height: 50px;
+  font-size: 35px;
+  justify-self: center;
+  border: none;
+  outline: none;
+  margin: 0 auto;
+  padding-left: 10px;
+  color: rgb(224, 24, 24);
+}
+
+.inputs button {
+  width: 99%;
+  border-radius: 6px;
+  height: 50px;
+  font-size: 25px;
+  justify-self: center;
+  border: none;
+  outline: none;
+  margin: 10px auto;
+  padding-left: 10px;
+  color: rgb(224, 24, 24);
+  background: gold;
+}
+
+.button:hover {
+  background: orange;
 }
 
 .inputs {
-  display: flex;
-  margin: 10px auto;
-  text-align: center;
-  border: 1px red solid;
-  width: 290px;
-  justify-content: space-evenly;
+  /* border: orange 1px solid; */
 }
 
-.input-box {
-  width: 50px;
-  text-align: left;
+.results {
+  text-align: center;
+  display: block;
+  color: white;
+  /* border: 1px solid green; */
+  font-size: 25px;
+}
+
+.results p {
+  margin-bottom: 0;
+}
+
+.test {
+  display: flex;
+  /* border: 1px solid blue; */
+  align-items: baseline;
+  justify-content: center;
+  padding: 0;
+  margin-top: 10px;
+}
+
+.test:first-child {
+  margin-right: 10px;
+}
+
+.exchange-icon {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+  /* border: 1px solid green; */
+}
+
+.exchange-icon i {
+  transform: rotate(90deg);
+  font-size: 25px;
+  color: gold;
+}
+
+.rates {
+  margin-top: 10px;
+}
+
+.rates p {
+  margin: 0;
 }
