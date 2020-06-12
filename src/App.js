@@ -9,14 +9,14 @@ function App() {
   const [currencyData, setCurrencyData] = useState({});
   const [fromValue, setFromValue] = useState("EUR");
   const [toValue, setToValue] = useState("EUR");
-  const [defaultData, setDefaultData] = useState([]);
+  // const [defaultData, setDefaultData] = useState([]);
   const [currencies, setCurrencies] = useState([]);
 
   useEffect((prevState) => {
     fetch(`https://api.exchangeratesapi.io/latest`)
       .then((res) => res.json())
       .then((response) => {
-        setDefaultData(response);
+        // setDefaultData(response);
         console.log(response, "hello");
         setCurrencies(Object.keys(response.rates));
         console.log(Object.keys(response.rates));
@@ -58,7 +58,7 @@ function App() {
                 onChange={(e) => setFromValue(e.target.value) }
                 defaultValue="EUR"
               >
-                <option selected value="EUR">
+                <option value="EUR">
                   EUR - Euros
                 </option>
                 {currencies.map((item) => (
@@ -75,7 +75,7 @@ function App() {
                 id="toValue"
                 onChange={(e) => setToValue(e.target.value)}
               >
-                <option value="EUR" selected>
+                <option value="EUR">
                   EUR
                 </option>
                 {currencies.map((item) => (
