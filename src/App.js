@@ -4,7 +4,8 @@ import "./App.css";
 const api = "https://api.exchangeratesapi.io/latest";
 
 function App() {
-  const [value, setValue] = useState("");
+  const [value, setValue] = useState(0);
+  const [submitValue, setSubmitValue] = useState(0)
   const [currencyData, setCurrencyData] = useState({});
   const [fromValue, setFromValue] = useState("EUR");
   const [toValue, setToValue] = useState("EUR");
@@ -16,7 +17,7 @@ function App() {
       .then((res) => res.json())
       .then((response) => {
         setDefaultData(response);
-        console.log(response);
+        console.log(response, "hello");
         setCurrencies(Object.keys(response.rates));
         console.log(Object.keys(response.rates));
       });
@@ -29,16 +30,7 @@ function App() {
       .then((res) => res.json())
       .then((response) => {
         setCurrencyData(response);
-        console.log(response);
-        console.log(fromValue);
-      });
-
-    event.preventDefault();
-    console.log("Clicked");
-    fetch(`${api}?base=${fromValue}`)
-      .then((res) => res.json())
-      .then((response) => {
-        setCurrencyData(response);
+        setSubmitValue(value)
         console.log(response);
         console.log(fromValue);
       });
@@ -63,19 +55,19 @@ function App() {
               />
               <select
                 id="fromValue"
-                onChange={(e) => setFromValue(e.target.value)}
+                onChange={(e) => setFromValue(e.target.value) }
                 defaultValue="EUR"
               >
                 <option selected value="EUR">
                   EUR - Euros
                 </option>
                 {currencies.map((item) => (
-                  <option value={item}>{item}</option>
+                  <option key={item} value={item}>{item}</option>
                 ))}
               </select>
 
               <div className="exchange-icon">
-                <i class="fas fa-exchange-alt"></i>
+                <i className="fas fa-exchange-alt"></i>
               </div>
 
               <select
@@ -87,7 +79,7 @@ function App() {
                   EUR
                 </option>
                 {currencies.map((item) => (
-                  <option value={item}>{item}</option>
+                  <option key={item} value={item}>{item}</option>
                 ))}
               </select>
               <button className="button">
@@ -95,37 +87,40 @@ function App() {
               </button>
             </div>
           </form>
-          {typeof currencyData.rates != "undefined" ? (
+          {typeof currencyData.rates !== "undefined" ? (
             <div className="results">
               <p>
-                {value} {fromValue} ={" "}
+                {submitValue} {currencyData.base} ={" "}
               </p>
 
               <div className="test">
                 <span
                   style={
-                    (value * currencyData.rates[toValue]).toFixed(3).length > 6
+                    (submitValue * currencyData.rates[toValue]).toFixed(3).length > 6
                       ? { fontSize: "50px" }
                       : { fontSize: "60px" }
                   }
                 >
-                  {(value * currencyData.rates[toValue]).toFixed(3)}{" "}
+                  {fromValue === toValue ? submitValue + " " : (submitValue * currencyData.rates[toValue]).toFixed(3)+" "}
+                  
                 </span>
                 <p> </p>
                 <p> {toValue}</p>
               </div>
               <div className="rates">
                 <p>
-                  1 {toValue} = {(1 / currencyData.rates[toValue]).toFixed(3)}{" "}
-                  {fromValue}
+                1 {toValue} = {toValue === fromValue ? 1 : (1 / currencyData.rates[toValue]).toFixed(3)}{" "}
+                  {currencyData.base}
+
+                  
                 </p>
                 <p>
-                  1 {fromValue} = {(1 * currencyData.rates[toValue]).toFixed(3)}{" "}
+                  1 {currencyData.base} = {toValue === fromValue ? 1 : (1 * currencyData.rates[toValue]).toFixed(3)}{" "}
                   {toValue}
                 </p>
               </div>
             </div>
-          ) : null}
+          )  : null}
         </div>
       </div>
     </div>
